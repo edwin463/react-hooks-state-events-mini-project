@@ -15,8 +15,12 @@ test("displays the task category", () => {
 
 test("is removed from the list when the delete button is clicked", () => {
   render(<App />);
+
   const task = screen.queryByText(/Buy rice/);
-  const deleteButton = task.parentElement.querySelector("button");
+  expect(task).toBeInTheDocument(); // Ensure the task exists
+
+  const deleteButton = task.closest(".task").querySelector("button");
+  expect(deleteButton).toBeInTheDocument(); // Ensure the button exists
 
   fireEvent.click(deleteButton);
 
